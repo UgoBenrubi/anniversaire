@@ -132,12 +132,31 @@
 
         <div id="etape4" class="etape">
             <h2>///dévouer.œuvrons.soucier</h2>
-            <p>Vous connaissez what3words ?</p>
+            <p>Vous connaissez what3words ? Indiquez le nom du lieu correspondant.</p>
+            <input type="text" id="reponse4" placeholder="Nom du lieu...">
+            <button onclick="validerEtape4()">Valider</button>
+            <p id="erreur4" class="erreur"></p>
+        </div>
+
+        <div id="etape5" class="etape">
+            <h2>Un peu de hauteur</h2>
+            <p>Je suis l'équivalent d'une roue d'exercice pour hamster géant, mais pour les humains qui aiment observer les échafaudages éternels de la justice.</p>
+            
+            <div id="question-roue">
+                <input type="text" id="reponse5" placeholder="Nom de l'attraction ou de la place...">
+                <button onclick="validerEtape5()">Valider</button>
+                <p id="erreur5" class="erreur"></p>
+            </div>
+
+            <div id="billets-roue" style="display: none; margin-top: 20px;">
+                <p style="font-weight: bold; color: #27ae60;">Acquisition des coordonnées confirmée. Sélectionnez votre profil pour extraire le titre de transport :</p>
+                <a href="Ticket_Marine.pdf" target="_blank" style="display: inline-block; padding: 12px 20px; background-color: #e67e22; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; margin: 10px; width: 80%; max-width: 250px;">Billet de Marine</a>
+                <a href="Ticket_Dimitri.pdf" target="_blank" style="display: inline-block; padding: 12px 20px; background-color: #2980b9; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; margin: 10px; width: 80%; max-width: 250px;">Billet de Dimitri</a>
+            </div>
         </div>
     </div>
 
     <script>
-        // Tableau contenant la liste des messages d'erreur
         const messagesErreur = [
             "Bah non…",
             "Quelle idée ?",
@@ -166,7 +185,6 @@
         let compteErreursEtape1 = 0;
         let compteClicksBypass = 0;
 
-        // Fonction générant l'affichage aléatoire
         function afficherErreurAleatoire(idElement) {
             const indexAleatoire = Math.floor(Math.random() * messagesErreur.length);
             const baliseErreur = document.getElementById(idElement);
@@ -193,7 +211,6 @@
                 }
             }
         }
-
 
         function validerEtape1b() {
             const rep = document.getElementById('reponse-heure').value;
@@ -239,7 +256,6 @@
             }
         }
 
-
         function passerAuPuces() {
             document.getElementById('etape-countdown').classList.remove('active');
             document.getElementById('etape2').classList.add('active');
@@ -262,6 +278,26 @@
                 document.getElementById('etape4').classList.add('active');
             } else {
                 afficherErreurAleatoire('erreur3');
+            }
+        }
+
+        function validerEtape4() {
+            const rep = document.getElementById('reponse4').value.toLowerCase().trim();
+            if (rep.includes('dillens')) {
+                document.getElementById('etape4').classList.remove('active');
+                document.getElementById('etape5').classList.add('active');
+            } else {
+                afficherErreurAleatoire('erreur4');
+            }
+        }
+
+        function validerEtape5() {
+            const rep = document.getElementById('reponse5').value.toLowerCase().trim();
+            if (rep.includes('roue') || rep.includes('poelaert') || rep.includes('palais de justice')) {
+                document.getElementById('question-roue').style.display = 'none';
+                document.getElementById('billets-roue').style.display = 'block';
+            } else {
+                afficherErreurAleatoire('erreur5');
             }
         }
     </script>
