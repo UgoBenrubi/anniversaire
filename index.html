@@ -67,18 +67,18 @@
 <body>
 
     <div class="scroll-invite">
-        <div class="scroll-text">⬇ Faites défiler vers le bas ⬇</div>
+        <div class="scroll-text">⬇ Pour faire commencer le fun, faites défiler vers le bas ⬇</div>
     </div>
 
     <div class="contenu-principal">
         <div id="accueil" class="accueil active">
             <h1>Journée Surprise</h1>
-            <p id="message-bienvenue" style="font-size: 18px; margin-bottom: 25px;">Coucou les copains ! Ce samedi, ça va être une journée incroyable &lt;3 Trop pressés de la passer avec vous.</p>
+            <p id="message-bienvenue" style="font-size: 18px; margin-bottom: 25px;">Joyeux anniversaire les copains !!</p>
             <button onclick="demarrerJournee()">Si vous êtes prets pour cette journée de zinzins, appuyez sur ce bouton =&gt;</button>
         </div>
 
         <div id="etape1" class="etape">
-            <h2>Étape 1 : Le Départ</h2>
+            <h2>Mais où allons-nous ?</h2>
             <p>Mon premier est un arbre conifère, mon second est ce même arbre, mon tout est notre point de départ.</p>
             <input type="text" id="reponse1" placeholder="Votre réponse...">
             <button onclick="validerEtape1()">Valider</button>
@@ -137,9 +137,9 @@
             document.getElementById('etape1').classList.add('active');
         }
 
-        function validerEtape1() {
+                function validerEtape1() {
             const rep = document.getElementById('reponse1').value.toLowerCase().trim();
-            if (rep === 'pinpin' || rep === 'pin-pin') {
+            if (rep === 'pinpin' || rep === 'pin-pin' || rep === 'pin pin') {
                 document.getElementById('etape1').classList.remove('active');
                 document.getElementById('etape1b').classList.add('active');
             } else {
