@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="fr"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Programme Surprise&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; padding: 20px; text-align: center; background-color: #f4f4f9; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.etape { display: none; margin-top: 20px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.active { display: block; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>input { padding: 10px; margin: 15px 0; width: 80%; max-width: 300px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>button { padding: 10px 20px; cursor: pointer; background-color: #2c3e50; color: white; border: none; border-radius: 4px; font-size: 16px; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.erreur { color: #e74c3c; display: none; margin-top: 10px; font-weight: bold; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1&gt;Journée Surprise&lt;/h1&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="etape1" class="etape active"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2&gt;Étape 1 : Le Départ&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Mon premier est un arbre conifère, mon second est ce même arbre, mon tout est notre point de départ.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="text" id="reponse1" placeholder="Votre réponse..."&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button onclick="validerEtape1()"&gt;Valider&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p id="erreur1" class="erreur"&gt;Réponse incorrecte.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="etape2" class="etape"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2&gt;Étape 2 : Marché aux Puces&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Rendez-vous Place du Jeu de Balle. Défi : trouvez l'objet le plus absurde pour 5€ maximum, à placer sur le bureau de votre voisin.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Une fois l'objet acheté, demandez le mot de passe à Camille pour débloquer la suite.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="text" id="reponse2" placeholder="Mot de passe..."&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button onclick="validerEtape2()"&gt;Valider&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p id="erreur2" class="erreur"&gt;Mot de passe incorrect.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="etape3" class="etape"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2&gt;Étape 3 : Le Lunch&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Résolvez cette équation pour trouver le numéro de la place où nous mangeons :&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;(Prix d'une Côte de cochon panée hors menu) - (Prix d'une Brioche perdue en menu) - 1&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="number" id="reponse3" placeholder="Résultat numérique..."&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button onclick="validerEtape3()"&gt;Valider&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p id="erreur3" class="erreur"&gt;Calcul erroné. Recommencez.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="etape4" class="etape"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2&gt;Étape 4 : Débloquée&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Rendez-vous au Dillens ! La suite des énigmes arrivera pendant le repas.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function validerEtape1() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const rep = document.getElementById('reponse1').value.toLowerCase().trim();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (rep === 'pinpin' || rep === 'pin-pin') {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('etape1').classList.remove('active');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('etape2').classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('erreur1').style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function validerEtape2() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const rep = document.getElementById('reponse2').value.toLowerCase().trim();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (rep === 'puces' || rep === 'jeu de balle') {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('etape2').classList.remove('active');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('etape3').classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('erreur2').style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function validerEtape3() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const rep = document.getElementById('reponse3').value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (rep === '11') {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('etape3').classList.remove('active');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('etape4').classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('erreur3').style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
