@@ -131,19 +131,39 @@
         </div>
     </div>
 
-    <script>
+        <script>
+        // Tableau contenant la liste des messages d'erreur
+        const messagesErreur = [
+            "Bah non…",
+            "Quelle idée ?",
+            "Marine arrête de parler et laisse Dimitri essayer",
+            "Dimitri arrête de mansplain Marine, laisse la essayer",
+            "Beurk",
+            "C’est raciste",
+            "… Je ne vais même pas répondre à ça …",
+            "Essaye encore"
+        ];
+
+        // Fonction générant l'affichage aléatoire
+        function afficherErreurAleatoire(idElement) {
+            const indexAleatoire = Math.floor(Math.random() * messagesErreur.length);
+            const baliseErreur = document.getElementById(idElement);
+            baliseErreur.innerText = messagesErreur[indexAleatoire];
+            baliseErreur.style.display = 'block';
+        }
+
         function demarrerJournee() {
             document.getElementById('accueil').classList.remove('active');
             document.getElementById('etape1').classList.add('active');
         }
 
-                function validerEtape1() {
+        function validerEtape1() {
             const rep = document.getElementById('reponse1').value.toLowerCase().trim();
             if (rep === 'pinpin' || rep === 'pin-pin' || rep === 'pin pin') {
                 document.getElementById('etape1').classList.remove('active');
                 document.getElementById('etape1b').classList.add('active');
             } else {
-                document.getElementById('erreur1').style.display = 'block';
+                afficherErreurAleatoire('erreur1');
             }
         }
 
@@ -154,7 +174,7 @@
                 document.getElementById('etape-countdown').classList.add('active');
                 lancerDecompte();
             } else {
-                document.getElementById('erreur1b').style.display = 'block';
+                afficherErreurAleatoire('erreur1b');
             }
         }
 
@@ -193,7 +213,7 @@
                 document.getElementById('etape2').classList.remove('active');
                 document.getElementById('etape3').classList.add('active');
             } else {
-                document.getElementById('erreur2').style.display = 'block';
+                afficherErreurAleatoire('erreur2');
             }
         }
 
@@ -203,7 +223,7 @@
                 document.getElementById('etape3').classList.remove('active');
                 document.getElementById('etape4').classList.add('active');
             } else {
-                document.getElementById('erreur3').style.display = 'block';
+                afficherErreurAleatoire('erreur3');
             }
         }
     </script>
