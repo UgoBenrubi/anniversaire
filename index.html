@@ -98,7 +98,7 @@
         </div>
 
         <div id="etape-countdown" class="etape">
-            <h2>RDV chez PinPin</h2>
+            <h2 onclick="activerBypass()">RDV chez PinPin</h2>
             <p id="decompte" style="font-size: 24px; font-weight: bold; margin: 20px 0; color: #2c3e50;"></p>
             <p>Boulangerie Pinpin<br>Rue Pierre d'Alcantara 35, 1060 Saint-Gilles</p>
             
@@ -162,6 +162,7 @@
         ];
 
         let compteErreursEtape1 = 0;
+        let compteClicksBypass = 0;
 
         // Fonction générant l'affichage aléatoire
         function afficherErreurAleatoire(idElement) {
@@ -226,6 +227,16 @@
                 document.getElementById('decompte').innerHTML = jours + "j " + heures + "h " + minutes + "m " + secondes + "s";
             }, 1000);
         }
+
+        function activerBypass() {
+            compteClicksBypass++;
+            if (compteClicksBypass >= 5) {
+                document.getElementById('btn-suite-bloque').style.display = 'none';
+                document.getElementById('btn-suite-debloque').style.display = 'block';
+                document.getElementById('decompte').innerHTML = "Mode Debug Activé";
+            }
+        }
+
 
         function passerAuPuces() {
             document.getElementById('etape-countdown').classList.remove('active');
