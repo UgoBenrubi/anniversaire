@@ -85,6 +85,28 @@
             <p id="erreur1" class="erreur">Réponse incorrecte.</p>
         </div>
 
+        <div id="etape1b" class="etape">
+            <h2>L'Heure du RDV</h2>
+            <p>Trouvez l'heure à laquelle nous nous retrouvons (format HH:MM).</p>
+            <input type="time" id="reponse-heure">
+            <button onclick="validerEtape1b()">Valider</button>
+            <p id="erreur1b" class="erreur">Ce n'est pas la bonne heure.</p>
+        </div>
+    
+        <div id="etape-countdown" class="etape">
+            <h2>RDV chez PinPin</h2>
+            <p id="decompte" style="font-size: 24px; font-weight: bold; margin: 20px 0; color: #2c3e50;"></p>
+            <p>Boulangerie Pinpin<br>Rue Pierre d'Alcantara 35, 1060 Saint-Gilles</p>
+            
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2519.980649714856!2d4.3436034!3d50.8223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3c4578b9b9a55%3A0x8f2d5e2361b7e411!2sBoulangerie%20Pinpin!5e0!3m2!1sfr!2sbe!4v1700000000000" width="100%" height="250" style="border:0; border-radius: 8px; margin-bottom: 20px;" allowfullscreen="" loading="lazy"></iframe>
+            
+            <a id="btn-agenda" href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:20261114T090000Z%0ADTEND:20261114T110000Z%0ASUMMARY:Surprise%20-%20RDV%20PinPin%0ALOCATION:Boulangerie%20Pinpin%2C%20Rue%20Pierre%20d'Alcantara%2035%2C%201060%20Saint-Gilles%0AEND:VEVENT%0AEND:VCALENDAR" download="rdv-pinpin.ics" style="display: block; padding: 12px 20px; background-color: #007aff; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; margin-bottom: 20px;">Ajouter à l'agenda Apple</a>
+    
+            <button id="btn-suite-bloque" style="background-color: #95a5a6; cursor: not-allowed; width: 100%;" disabled>Revenez samedi à 10h pour la suite</button>
+            <button id="btn-suite-debloque" onclick="passerAuPuces()" style="display: none; width: 100%;">Découvrir la suite du programme</button>
+        </div>
+
+        
         <div id="etape2" class="etape">
             <h2>Étape 2 : Marché aux Puces</h2>
             <p>Rendez-vous Place du Jeu de Balle. Défi : trouvez l'objet le plus absurde pour 5€ maximum, à placer sur le bureau de votre voisin.</p>
@@ -115,14 +137,54 @@
             document.getElementById('etape1').classList.add('active');
         }
 
-        function validerEtape1() {
+                function validerEtape1() {
             const rep = document.getElementById('reponse1').value.toLowerCase().trim();
             if (rep === 'pinpin' || rep === 'pin-pin') {
                 document.getElementById('etape1').classList.remove('active');
-                document.getElementById('etape2').classList.add('active');
+                document.getElementById('etape1b').classList.add('active');
             } else {
                 document.getElementById('erreur1').style.display = 'block';
             }
+        }
+
+        function validerEtape1b() {
+            const rep = document.getElementById('reponse-heure').value;
+            if (rep === '10:00') {
+                document.getElementById('etape1b').classList.remove('active');
+                document.getElementById('etape-countdown').classList.add('active');
+                lancerDecompte();
+            } else {
+                document.getElementById('erreur1b').style.display = 'block';
+            }
+        }
+
+        function lancerDecompte() {
+            const dateCible = new Date('2026-11-14T10:00:00').getTime();
+            
+            const interval = setInterval(function() {
+                const maintenant = new Date().getTime();
+                const distance = dateCible - maintenant;
+                
+                if (distance <= 0) {
+                    clearInterval(interval);
+                    document.getElementById('decompte').innerHTML = "C'est l'heure !";
+                    document.getElementById('btn-suite-bloque').style.display = 'none';
+                    document.getElementById('btn-suite-debloque').style.display = 'block';
+                    return;
+                }
+                
+                const jours = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const heures = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const secondes = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById('decompte').innerHTML = jours + "j " + heures + "h " + minutes + "m " + secondes + "s";
+            }, 1000);
+        }
+
+        function passerAuPuces() {
+            document.getElementById('etape-countdown').classList.remove('active');
+            document.getElementById('etape2').classList.add('active');
         }
 
         function validerEtape2() {
