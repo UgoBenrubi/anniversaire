@@ -1,75 +1,113 @@
+cat << 'EOF' > index.html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programme Surprise</title>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; padding: 20px; text-align: center; background-color: #f4f4f9; }
-        .etape { display: none; margin-top: 20px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .active { display: block; }
-        input { padding: 10px; margin: 15px 0; width: 80%; max-width: 300px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; }
-        button { padding: 10px 20px; cursor: pointer; background-color: #2c3e50; color: white; border: none; border-radius: 4px; font-size: 16px; }
-        .erreur { color: #e74c3c; display: none; margin-top: 10px; font-weight: bold; }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme Surprise</title>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
+            padding: 20px; 
+            text-align: center; 
+            background-image: url(‘PhotoDeNous4.jpeg’); 
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: fixed; 
+            margin: 0;
+        }
+        .etape, .accueil { 
+            display: none; 
+            margin-top: 10vh; 
+            padding: 20px; 
+            border: 1px solid #ddd; 
+            border-radius: 8px; 
+            background: rgba(255, 255, 255, 0.92); 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2); 
+            max-width: 500px; 
+            margin-left: auto; 
+            margin-right: auto;
+        }
+        .active { display: block; }
+        input { padding: 10px; margin: 15px 0; width: 80%; max-width: 300px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; }
+        button { padding: 12px 20px; cursor: pointer; background-color: #2c3e50; color: white; border: none; border-radius: 4px; font-size: 16px; font-weight: bold; }
+        .erreur { color: #e74c3c; display: none; margin-top: 10px; font-weight: bold; }
+    </style>
 </head>
 <body>
-    <h1>Journée Surprise</h1>
-    <div id="etape1" class="etape active">
-        <h2>Étape 1 : Le Départ</h2>
-        <p>Mon premier est un arbre conifère, mon second est ce même arbre, mon tout est notre point de départ.</p>
-        <input type="text" id="reponse1" placeholder="Votre réponse...">
-        <button onclick="validerEtape1()">Valider</button>
-        <p id="erreur1" class="erreur">Réponse incorrecte.</p>
-    </div>
-    <div id="etape2" class="etape">
-        <h2>Étape 2 : Marché aux Puces</h2>
-        <p>Rendez-vous Place du Jeu de Balle. Défi : trouvez l'objet le plus absurde pour 5€ maximum, à placer sur le bureau de votre voisin.</p>
-        <p>Une fois l'objet acheté, demandez le mot de passe à Camille pour débloquer la suite.</p>
-        <input type="text" id="reponse2" placeholder="Mot de passe...">
-        <button onclick="validerEtape2()">Valider</button>
-        <p id="erreur2" class="erreur">Mot de passe incorrect.</p>
-    </div>
-    <div id="etape3" class="etape">
-        <h2>Étape 3 : Le Lunch</h2>
-        <p>Résolvez cette équation pour trouver le numéro de la place où nous mangeons :</p>
-        <p>(Prix d'une Côte de cochon panée hors menu) - (Prix d'une Brioche perdue en menu) - 1</p>
-        <input type="number" id="reponse3" placeholder="Résultat numérique...">
-        <button onclick="validerEtape3()">Valider</button>
-        <p id="erreur3" class="erreur">Calcul erroné. Recommencez.</p>
-    </div>
-    <div id="etape4" class="etape">
-        <h2>Étape 4 : Débloquée</h2>
-        <p>Rendez-vous au Dillens ! La suite des énigmes arrivera pendant le repas.</p>
-    </div>
-    <script>
-        function validerEtape1() {
-            const rep = document.getElementById('reponse1').value.toLowerCase().trim();
-            if (rep === 'pinpin' || rep === 'pin-pin') {
-                document.getElementById('etape1').classList.remove('active');
-                document.getElementById('etape2').classList.add('active');
-            } else {
-                document.getElementById('erreur1').style.display = 'block';
-            }
-        }
-        function validerEtape2() {
-            const rep = document.getElementById('reponse2').value.toLowerCase().trim();
-            if (rep === 'puces' || rep === 'jeu de balle') { 
-                document.getElementById('etape2').classList.remove('active');
-                document.getElementById('etape3').classList.add('active');
-            } else {
-                document.getElementById('erreur2').style.display = 'block';
-            }
-        }
-        function validerEtape3() {
-            const rep = document.getElementById('reponse3').value.trim();
-            if (rep === '11') {
-                document.getElementById('etape3').classList.remove('active');
-                document.getElementById('etape4').classList.add('active');
-            } else {
-                document.getElementById('erreur3').style.display = 'block';
-            }
-        }
-    </script>
+    <div id="accueil" class="accueil active">
+        <h1>Journée Surprise</h1>
+        <p id="message-bienvenue" style="font-size: 18px; margin-bottom: 25px;">Coucou les copains ! Ce samedi, ça va être une journée incroyable <3 Trop pressés de la passer avec vous. </p>
+        <button onclick="demarrerJournee()">Si vous êtes prets pour cette journée de zinzins, appuyez sur ce bouton =&gt;</button>
+    </div>
+ 
+    <div id="etape1" class="etape">
+        <h2>Étape 1 : Le Départ</h2>
+        <p>Mon premier est un arbre conifère, mon second est ce même arbre, mon tout est notre point de départ.</p>
+        <input type="text" id="reponse1" placeholder="Votre réponse...">
+        <button onclick="validerEtape1()">Valider</button>
+        <p id="erreur1" class="erreur">Réponse incorrecte.</p>
+    </div>
+ 
+    <div id="etape2" class="etape">
+        <h2>Étape 2 : Marché aux Puces</h2>
+        <p>Rendez-vous Place du Jeu de Balle. Défi : trouvez l'objet le plus absurde pour 5€ maximum, à placer sur le bureau de votre voisin.</p>
+        <p>Une fois l'objet acheté, demandez le mot de passe à Camille pour débloquer la suite.</p>
+        <input type="text" id="reponse2" placeholder="Mot de passe...">
+        <button onclick="validerEtape2()">Valider</button>
+        <p id="erreur2" class="erreur">Mot de passe incorrect.</p>
+    </div>
+ 
+    <div id="etape3" class="etape">
+        <h2>Étape 3 : Le Lunch</h2>
+        <p>Résolvez cette équation pour trouver le numéro de la place où nous mangeons :</p>
+        <p>(Prix d'une Côte de cochon panée hors menu) - (Prix d'une Brioche perdue en menu) - 1</p>
+        <input type="number" id="reponse3" placeholder="Résultat numérique...">
+        <button onclick="validerEtape3()">Valider</button>
+        <p id="erreur3" class="erreur">Calcul erroné. Recommencez.</p>
+    </div>
+ 
+    <div id="etape4" class="etape">
+        <h2>Étape 4 : Débloquée</h2>
+        <p>Rendez-vous au Dillens ! La suite des énigmes arrivera pendant le repas.</p>
+    </div>
+ 
+    <script>
+        function demarrerJournee() {
+            document.getElementById('accueil').classList.remove('active');
+            document.getElementById('etape1').classList.add('active');
+        }
+ 
+        function validerEtape1() {
+            const rep = document.getElementById('reponse1').value.toLowerCase().trim();
+            if (rep === 'pinpin' || rep === 'pin-pin') {
+                document.getElementById('etape1').classList.remove('active');
+                document.getElementById('etape2').classList.add('active');
+            } else {
+                document.getElementById('erreur1').style.display = 'block';
+            }
+        }
+ 
+        function validerEtape2() {
+            const rep = document.getElementById('reponse2').value.toLowerCase().trim();
+            if (rep === 'puces' || rep === 'jeu de balle') { 
+                document.getElementById('etape2').classList.remove('active');
+                document.getElementById('etape3').classList.add('active');
+            } else {
+                document.getElementById('erreur2').style.display = 'block';
+            }
+        }
+ 
+        function validerEtape3() {
+            const rep = document.getElementById('reponse3').value.trim();
+            if (rep === '11') {
+                document.getElementById('etape3').classList.remove('active');
+                document.getElementById('etape4').classList.add('active');
+            } else {
+                document.getElementById('erreur3').style.display = 'block';
+            }
+        }
+    </script>
 </body>
 </html>
+EOF
