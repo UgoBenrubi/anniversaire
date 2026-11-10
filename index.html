@@ -7,22 +7,53 @@
     <style>
         body { 
             font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
-            padding: 20px; 
-            text-align: center; 
-            background-image: url('PhotoDeNous4.jpg'); 
-            background-size: cover; 
-            background-position: center bottom;
-            background-attachment: fixed; 
             margin: 0;
+            background-color: #f4f4f9; 
         }
+        
+        /* Conteneur de l'image de garde */
+        .image-intro {
+            height: 100vh; /* Prend 100% de la hauteur de l'écran */
+            width: 100%;
+            background-image: url('PhotoDeNous4.jpg');
+            background-size: cover;
+            background-position: center top; /* Centre et aligne vers le haut */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Place le texte en haut */
+            align-items: center;
+        }
+
+        /* Style du texte d'invite */
+        .scroll-text {
+            margin-top: 40px;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+            animation: clignote 2s infinite;
+        }
+
+        @keyframes clignote {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+
+        /* Conteneur du jeu en dessous de l'image */
+        .contenu-principal {
+            padding: 40px 20px;
+            text-align: center;
+            min-height: 100vh;
+        }
+
         .etape, .accueil { 
             display: none; 
-            margin-top: 10vh; 
             padding: 20px; 
             border: 1px solid #ddd; 
             border-radius: 8px; 
-            background: rgba(255, 255, 255, 0.92); 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2); 
+            background: white; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
             max-width: 500px; 
             margin-left: auto; 
             margin-right: auto;
@@ -34,41 +65,48 @@
     </style>
 </head>
 <body>
-    <div id="accueil" class="accueil active">
-        <h1>Journée Surprise</h1>
-        <p id="message-bienvenue" style="font-size: 18px; margin-bottom: 25px;">Coucou les copains ! Ce samedi, ça va être une journée incroyable &lt;3 Trop pressés de la passer avec vous.</p>
-        <button onclick="demarrerJournee()">Si vous êtes prets pour cette journée de zinzins, appuyez sur ce bouton =&gt;</button>
+
+    <div class="image-intro">
+        <div class="scroll-text">⬇ Faites défiler vers le bas ⬇</div>
     </div>
 
-    <div id="etape1" class="etape">
-        <h2>Étape 1 : Le Départ</h2>
-        <p>Mon premier est un arbre conifère, mon second est ce même arbre, mon tout est notre point de départ.</p>
-        <input type="text" id="reponse1" placeholder="Votre réponse...">
-        <button onclick="validerEtape1()">Valider</button>
-        <p id="erreur1" class="erreur">Réponse incorrecte.</p>
-    </div>
+    <div class="contenu-principal">
+        <div id="accueil" class="accueil active">
+            <h1>Journée Surprise</h1>
+            <p id="message-bienvenue" style="font-size: 18px; margin-bottom: 25px;">Coucou les copains ! Ce samedi, ça va être une journée incroyable &lt;3 Trop pressés de la passer avec vous.</p>
+            <button onclick="demarrerJournee()">Si vous êtes prets pour cette journée de zinzins, appuyez sur ce bouton =&gt;</button>
+        </div>
 
-    <div id="etape2" class="etape">
-        <h2>Étape 2 : Marché aux Puces</h2>
-        <p>Rendez-vous Place du Jeu de Balle. Défi : trouvez l'objet le plus absurde pour 5€ maximum, à placer sur le bureau de votre voisin.</p>
-        <p>Une fois l'objet acheté, demandez le mot de passe à Camille pour débloquer la suite.</p>
-        <input type="text" id="reponse2" placeholder="Mot de passe...">
-        <button onclick="validerEtape2()">Valider</button>
-        <p id="erreur2" class="erreur">Mot de passe incorrect.</p>
-    </div>
+        <div id="etape1" class="etape">
+            <h2>Étape 1 : Le Départ</h2>
+            <p>Mon premier est un arbre conifère, mon second est ce même arbre, mon tout est notre point de départ.</p>
+            <input type="text" id="reponse1" placeholder="Votre réponse...">
+            <button onclick="validerEtape1()">Valider</button>
+            <p id="erreur1" class="erreur">Réponse incorrecte.</p>
+        </div>
 
-    <div id="etape3" class="etape">
-        <h2>Étape 3 : Le Lunch</h2>
-        <p>Résolvez cette équation pour trouver le numéro de la place où nous mangeons :</p>
-        <p>(Prix d'une Côte de cochon panée hors menu) - (Prix d'une Brioche perdue en menu) - 1</p>
-        <input type="number" id="reponse3" placeholder="Résultat numérique...">
-        <button onclick="validerEtape3()">Valider</button>
-        <p id="erreur3" class="erreur">Calcul erroné. Recommencez.</p>
-    </div>
+        <div id="etape2" class="etape">
+            <h2>Étape 2 : Marché aux Puces</h2>
+            <p>Rendez-vous Place du Jeu de Balle. Défi : trouvez l'objet le plus absurde pour 5€ maximum, à placer sur le bureau de votre voisin.</p>
+            <p>Une fois l'objet acheté, demandez le mot de passe à Camille pour débloquer la suite.</p>
+            <input type="text" id="reponse2" placeholder="Mot de passe...">
+            <button onclick="validerEtape2()">Valider</button>
+            <p id="erreur2" class="erreur">Mot de passe incorrect.</p>
+        </div>
 
-    <div id="etape4" class="etape">
-        <h2>Étape 4 : Débloquée</h2>
-        <p>Rendez-vous au Dillens ! La suite des énigmes arrivera pendant le repas.</p>
+        <div id="etape3" class="etape">
+            <h2>Étape 3 : Le Lunch</h2>
+            <p>Résolvez cette équation pour trouver le numéro de la place où nous mangeons :</p>
+            <p>(Prix d'une Côte de cochon panée hors menu) - (Prix d'une Brioche perdue en menu) - 1</p>
+            <input type="number" id="reponse3" placeholder="Résultat numérique...">
+            <button onclick="validerEtape3()">Valider</button>
+            <p id="erreur3" class="erreur">Calcul erroné. Recommencez.</p>
+        </div>
+
+        <div id="etape4" class="etape">
+            <h2>Étape 4 : Débloquée</h2>
+            <p>Rendez-vous au Dillens ! La suite des énigmes arrivera pendant le repas.</p>
+        </div>
     </div>
 
     <script>
