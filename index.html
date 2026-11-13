@@ -71,13 +71,13 @@
     </div>
 
     <div class="contenu-principal">
-        <div id="accueil" class="accueil active">
+        <div id="accueil" class="accueil">
             <h1>Joyeux anniversaire les copains !!</h1>
             <p id="message-bienvenue" style="font-size: 18px; margin-bottom: 25px;"> Bienvenue dans votre GIGA MEGA journée d'anniversaire </p>
             <button onclick="demarrerJournee()">Si vous êtes prets pour cette journée de zinzins, appuyez sur ce bouton </button>
         </div>
 
-        <div id="etape1" class="etape">
+        <div id="etape-countdown" class="etape active">
             <h2>Mais où allons-nous ?</h2>
             <p>Mon premier est un arbre 🌳, mon second est un arbre 🌴</p>
             <p id="phrase-secours" style="display: none; color: #c0392b; font-weight: bold; margin-top: 15px;">Gna gna gna je suis déjà docteur... Ça carbure pas des masses </p>
@@ -381,6 +381,7 @@
                 afficherErreurAleatoire('erreur5');
             }
         }
+        lancerDecompte();
     </script>
 </body>
 </html>
