@@ -106,7 +106,7 @@
             
             <a id="btn-agenda" href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:20261114T090000Z%0ADTEND:20261114T110000Z%0ASUMMARY:Surprise%20-%20RDV%20PinPin%0ALOCATION:Boulangerie%20Pinpin%2C%20Rue%20Pierre%20d'Alcantara%2035%2C%201060%20Saint-Gilles%0AEND:VEVENT%0AEND:VCALENDAR" download="rdv-pinpin.ics" style="display: block; padding: 12px 20px; background-color: #007aff; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; margin-bottom: 20px;">Ajouter à l'agenda Apple</a>
 
-            <button id="btn-suite-bloque" style="background-color: #95a5a6; cursor: not-allowed; width: 100%;" disabled>Revenez samedi à 10h pour la suite</button>
+            <button id="btn-suite-bloque" style="background-color: #95a5a6; cursor: not-allowed; width: 100%;" disabled>Revenez samedi à 10h30 pour la suite</button>
             <button id="btn-suite-debloque" onclick="passerAuPuces()" style="display: none; width: 100%;">Découvrir la suite du programme</button>
         </div>
 
@@ -216,7 +216,7 @@
 
         function validerEtape1b() {
             const rep = document.getElementById('reponse-heure').value;
-            if (rep === '10:00') {
+            if (rep === '10:30') {
                 document.getElementById('etape1b').classList.remove('active');
                 document.getElementById('etape-countdown').classList.add('active');
                 lancerDecompte();
@@ -226,7 +226,7 @@
         }
 
         function lancerDecompte() {
-            const dateCible = new Date('2026-11-14T10:00:00').getTime();
+            const dateCible = new Date('2026-11-14T10:30:00').getTime();
             
             const interval = setInterval(function() {
                 const maintenant = new Date().getTime();
