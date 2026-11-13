@@ -113,7 +113,7 @@
         <div id="etape2" class="etape">
             <h2>Samedi c'est le jour des puces !</h2>
             <p>Mes petites puces, rendez-vous Place du Jeu de Balle.</p>
-            <p>Votre but: trouvez l'objet le plus absurde pour 5€ maximum, offrez le à votre copain d'anniversaire.</p>
+            <p>Votre but: trouvez l'objet le plus absurde pour 5€ maximum, offrez le à votre copain de gauche.</p>
             <p>Une fois que c'est fait, demandez le mot de passe à Camille pour débloquer la suite.</p>
             <input type="text" id="reponse2" placeholder="Mot de passe...">
             <button onclick="validerEtape2()">Valider</button>
@@ -130,14 +130,43 @@
             <p id="erreur3" class="erreur"></p>
         </div>
 
-        <div id="etape4" class="etape">
-            <h2>///dévouer.œuvrons.soucier</h2>
-            <p>Vous connaissez what3words ?</p>
-            <p> Quand vous voulez passer à la suite, indiquez le nom du lieu correspondant.</p>
-            <input type="text" id="reponse4" placeholder="Nom du lieu...">
+       <div id="etape4a" class="etape">
+            <h2>Mot 1 / 3</h2>
+            <p>A l’opposé de la garde-robe de Dimitri & Ugo. Et totalement dans la garde-robe de Camille & Marine.</p>
+            <p id="indice-mot1" style="display: none; color: #d35400; font-weight: bold; margin-top: 15px;">Indice : Qui existe, qui a lieu ou qui se passe au moment où l’on parle.</p>
+            <input type="text" id="reponse-mot1" placeholder="Votre réponse...">
+            <button onclick="validerMot1()">Valider</button>
+            <p id="erreur-mot1" class="erreur"></p>
+        </div>
+
+        <div id="etape4b" class="etape">
+            <h2>Mot 2 / 3</h2>
+            <p>Ce que vous avez réussi à faire au marché aux puces.</p>
+            <p id="indice-mot2" style="display: none; color: #d35400; font-weight: bold; margin-top: 15px;">Indice : Trouver ou découvrir quelque chose (ou quelqu'un) à force de recherche, souvent un objet rare, caché ou difficile à obtenir.</p>
+            <input type="text" id="reponse-mot2" placeholder="Votre réponse...">
+            <button onclick="validerMot2()">Valider</button>
+            <p id="erreur-mot2" class="erreur"></p>
+        </div>
+
+        <div id="etape4c" class="etape">
+            <h2>Mot 3 / 3</h2>
+            <p>Le type de technologies qu’on utilise pour nos thèses.</p>
+            <p id="indice-mot3" style="display: none; color: #d35400; font-weight: bold; margin-top: 15px;">Indice : L'extrémité d'un corps allongé et pointu.</p>
+            <input type="text" id="reponse-mot3" placeholder="Votre réponse...">
+            <button onclick="validerMot3()">Valider</button>
+            <p id="erreur-mot3" class="erreur"></p>
+        </div>
+
+        <div id="etape4-final" class="etape">
+            <h2>Coordonnées générées</h2>
+            <p>Rendez-vous sur le site <a href="https://what3words.com/" target="_blank" style="color: #2980b9; font-weight: bold; text-decoration: underline;">What3Words</a> pour trouver le lieu exact correspondant à ces trois mots.</p>
+            <button onclick="copierW3W()" style="background-color: #e67e22; margin: 15px 0;">Copier "///actuel.dénicher.pointe"</button>
+            <p id="msg-copie" style="display: none; color: #27ae60; font-weight: bold; margin-bottom: 15px;">Syntaxe copiée dans le presse-papier !</p>
+            <input type="text" id="reponse4" placeholder="Indiquez le nom du lieu trouvé...">
             <button onclick="validerEtape4()">Valider</button>
             <p id="erreur4" class="erreur"></p>
         </div>
+
 
         <div id="etape5" class="etape">
             <h2>Un peu de hauteur</h2>
@@ -186,6 +215,9 @@
 
         let compteErreursEtape1 = 0;
         let compteClicksBypass = 0;
+        let compteErreursMot1 = 0;
+        let compteErreursMot2 = 0;
+        let compteErreursMot3 = 0;
 
         function afficherErreurAleatoire(idElement) {
             const indexAleatoire = Math.floor(Math.random() * messagesErreur.length);
@@ -273,20 +305,67 @@
             }
         }
 
-        function validerEtape3() {
+                function validerEtape3() {
             const rep = document.getElementById('reponse3').value.trim();
             if (rep === '11') {
                 document.getElementById('etape3').classList.remove('active');
-                document.getElementById('etape4').classList.add('active');
+                document.getElementById('etape4a').classList.add('active');
             } else {
                 afficherErreurAleatoire('erreur3');
             }
         }
 
+        function validerMot1() {
+            const rep = document.getElementById('reponse-mot1').value.toLowerCase().trim();
+            if (rep === 'actuel') {
+                document.getElementById('etape4a').classList.remove('active');
+                document.getElementById('etape4b').classList.add('active');
+            } else {
+                compteErreursMot1++;
+                afficherErreurAleatoire('erreur-mot1');
+                if (compteErreursMot1 >= 5) {
+                    document.getElementById('indice-mot1').style.display = 'block';
+                }
+            }
+        }
+
+        function validerMot2() {
+            const rep = document.getElementById('reponse-mot2').value.toLowerCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            if (rep === 'denicher') {
+                document.getElementById('etape4b').classList.remove('active');
+                document.getElementById('etape4c').classList.add('active');
+            } else {
+                compteErreursMot2++;
+                afficherErreurAleatoire('erreur-mot2');
+                if (compteErreursMot2 >= 5) {
+                    document.getElementById('indice-mot2').style.display = 'block';
+                }
+            }
+        }
+
+        function validerMot3() {
+            const rep = document.getElementById('reponse-mot3').value.toLowerCase().trim();
+            if (rep === 'pointe') {
+                document.getElementById('etape4c').classList.remove('active');
+                document.getElementById('etape4-final').classList.add('active');
+            } else {
+                compteErreursMot3++;
+                afficherErreurAleatoire('erreur-mot3');
+                if (compteErreursMot3 >= 5) {
+                    document.getElementById('indice-mot3').style.display = 'block';
+                }
+            }
+        }
+
+        function copierW3W() {
+            navigator.clipboard.writeText("///actuel.dénicher.pointe");
+            document.getElementById('msg-copie').style.display = 'block';
+        }
+
         function validerEtape4() {
             const rep = document.getElementById('reponse4').value.toLowerCase().trim();
-            if (rep.includes('dillens')) {
-                document.getElementById('etape4').classList.remove('active');
+            if (rep.includes('poelaert') || rep.includes('roue') || rep.includes('justice') || rep.includes('marolles')) {
+                document.getElementById('etape4-final').classList.remove('active');
                 document.getElementById('etape5').classList.add('active');
             } else {
                 afficherErreurAleatoire('erreur4');
